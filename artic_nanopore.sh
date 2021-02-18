@@ -30,6 +30,7 @@ for dir in $(ls -d */)
 do
 	cd ${dir} 
 	artic minion --normalise 1200 --threads 8 --scheme-directory ${primer_schemes} --read-file ${dir%/}_.fastq --fast5-directory ${basedir}/${fast5} --sequencing-summary ${basedir}/${summary} ${schemes_sample}  ${dir%/}
+	#21.02.18: we will likely adjust this soon to --medaka, in order to speed up the analysis and transfer of files (excluding the enormous fast5 files) - currently comparing output from the two settings
 	cd "${fastq_pass}"
 done
 
