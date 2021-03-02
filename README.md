@@ -26,3 +26,7 @@ In our hands we see 7-22% unmapped reads from illumina reads
 ### Quality cut-off ###
 
 Ref GISAID - we use a quality cut-off limit of 97% coverage with minimum depth 10x (illumina) and 20x (nanopore)
+
+## Links to other Norwegian labs/repos ##
+
+[Stavanger University Hospital](https://github.com/marithetland/susCovONT)
