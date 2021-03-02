@@ -18,7 +18,8 @@ summary=[summary file from nanopore]
 for dir in $(ls -d */)
 do
 	cd ${dir}
-	artic guppyplex --skip-quality-check --min-length 200 --max-length 1200 --directory ./  --prefix ${dir%/}; 
+	artic guppyplex --skip-quality-check --min-length 200 --max-length 1200 --directory ./  --prefix ${dir%/};
+	#2.3.21: we will likely revert back to the default values 400/700 - the idea behind increasing the width was an effort to include possible bridged amplicons/read-through. It is uncertain whether if these bridged reads occurs.
 	cd "${fastq_pass}"
 done
 
@@ -30,7 +31,8 @@ for dir in $(ls -d */)
 do
 	cd ${dir} 
 	artic minion --normalise 1200 --threads 8 --scheme-directory ${primer_schemes} --read-file ${dir%/}_.fastq --fast5-directory ${basedir}/${fast5} --sequencing-summary ${basedir}/${summary} ${schemes_sample}  ${dir%/}
-	#21.02.18: we will likely adjust this soon to --medaka, in order to speed up the analysis and transfer of files (excluding the enormous fast5 files) - currently comparing output from the two settings
+	#18.02.21: we will likely adjust this soon to --medaka, in order to speed up the analysis and transfer of files (excluding the enormous fast5 files) - currently comparing output from the two settings
+	#2.3.21: we increased the --normalise value from 500 > 1200 as this increased the quality (depth/coverage) in the beginning of the development of the method - however with better quality output - it may not be neccessary.
 	cd "${fastq_pass}"
 done
 
